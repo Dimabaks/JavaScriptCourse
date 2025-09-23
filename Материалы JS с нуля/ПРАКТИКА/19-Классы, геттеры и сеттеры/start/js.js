@@ -29,26 +29,35 @@ Car.prototype.break = function () {
 
 
 class Car {
-  constructor(mark, speed, speedUS) {
+  constructor(mark, speed) {
     this.mark = mark;
     this.speed = speed;
+    this.speedUS;
   }
 
-  get calcKmInMl() {
-    const mill = this.speed * 1.6;
+  get speed() {
+    const mill = this.speedUS * 1.6;
     return mill;
+  }
+
+  set speed(speed) {
+    this.speedUS = speed / 1.6;
   }
 
   accelerate() {
       this.speed += 10;
-      console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+      console.log(`${this.mark} едедет со скоростью ${this.speed} м\ч`);
   }
 
   break() {
     this.speed -= 5;
-    console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+    console.log(`${this.mark} едедет со скоростью ${this.speed} м\ч`);
   };
 }
 
 const audi = new Car("audi", 100);
 console.log(audi);
+
+/* audi.speedUS = 50;
+console.log(audi.speedUS)
+audi.accelerate() */
