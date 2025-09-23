@@ -26,3 +26,29 @@ Car.prototype.break = function () {
 В классе, создайте свойство this.speedUS но не присваивайте ему значение, которые получают свойства из параметров конструктора. speedUS должно считаться посредствам сеттера и геттера.
 
 */
+
+
+class Car {
+  constructor(mark, speed, speedUS) {
+    this.mark = mark;
+    this.speed = speed;
+  }
+
+  get calcKmInMl() {
+    const mill = this.speed * 1.6;
+    return mill;
+  }
+
+  accelerate() {
+      this.speed += 10;
+      console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+  }
+
+  break() {
+    this.speed -= 5;
+    console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+  };
+}
+
+const audi = new Car("audi", 100);
+console.log(audi);
