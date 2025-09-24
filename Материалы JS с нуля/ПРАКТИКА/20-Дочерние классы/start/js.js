@@ -24,3 +24,41 @@ Car.prototype.break = function () {
 };
 
 */
+
+
+const Car = function (mark, speed) {
+  this.mark = mark;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+};
+Car.prototype.break = function () {
+  this.speed -= 5;
+  console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+};
+
+function ElectroCar (mark, speed, chargeBattery) {
+  Car.call(this, mark, speed);
+  this.chargeBattery = chargeBattery;
+}
+
+ElectroCar.prototype = Object.create(Car.prototype);
+ElectroCar.prototype.charging = function(chargeTo) {
+  this.chargeBattery = chargeTo;
+}
+
+const zeekr = new ElectroCar("zeekr", 100, 30);
+console.log(zeekr);
+zeekr.charging(80);
+console.log(zeekr);
+
+ElectroCar.prototype.accelerate = function() {
+  this.speed = this.speed + 20;
+  this.chargeBattery = this.chargeBattery - 1;
+  console.log(`${this.mark} едет со скоростью ${this.speed} км/ч, с уровнем заряда ${this.chargeBattery}%`);
+}
+
+zeekr.accelerate();
