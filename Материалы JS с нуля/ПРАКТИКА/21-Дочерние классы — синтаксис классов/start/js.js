@@ -42,3 +42,45 @@ ElectroCar.prototype.accelerate = function () {
 };
 
 */
+
+
+class Car {
+  constructor(mark, speed) {
+    this.mark = mark;
+    this.speed = speed;
+  }
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+    return this;
+  }
+  break() {
+    this.speed -= 5;
+    console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
+    return this;
+  }
+}
+
+class ElectroCar extends Car {
+  #charge;
+  constructor(mark, speed, charge) {
+    super(mark, speed);
+    this.#charge = charge;
+  }
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.mark} едет со скоростью ${this.speed} , с уровнем заряда ${this.#charge} `
+    );
+    return this;
+  }
+}
+
+const zeekr = new ElectroCar("Zeekr", 100, 40);
+console.log(zeekr);
+zeekr.chargeBattery(100).accelerate().break();
